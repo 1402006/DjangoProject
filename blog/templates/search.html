@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div class="container" >
+     <h2 class="text-center mt-3"> nouvelle_recherche </h2>
+    <div class="row">
+        {% for article in liste_article %}
+        <div class="col-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="card mb-1 p-2">
+                {% if article.image == "http://default" %} 
+                <a href="{% url 'detail' article.id %}">
+                    <img class ="card-img-top" src="{% static 'img/sample.jpg'%}" alt="card image cap" style="height: 250px;;">
+                </a>
+                {% else %}
+                <a href="{% url 'detail' article.id %}">
+                <img class ="card-img-top" src="{{article.image.url}}" alt="card image cap" style="height: 250;">
+                </a>  
+                {% endif %}  
+                
+                <div class="card-body" style="height: 240px;">
+                
+                <h4 class="card-title"><a href="{% url 'detail' article.id%}"> {{article.title}}</a></h4>
+                <p class ="card-text">{{article.desc|truncatewords:8}}</p>
+                <p class ="card-text">publie il y'a {{article.created_at|timesince}}</p>
+                <a href="{% url 'detail' article.id %}" class="btn btn-primary"> lire la suite </a>
+                
+                </div>
+          </div>
+          </div>
+        {% endfor %}
+    </div>
+   
+
+</div>
+       
+{% endblock %}
