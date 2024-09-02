@@ -14,7 +14,6 @@ def detail(request,id_article):
     return render(request,'detail.html',{"article":article,"aer": article_en_relations})
 
 
-
 def home_views(request):
     context = {}
     context['form'] = InputForm()
